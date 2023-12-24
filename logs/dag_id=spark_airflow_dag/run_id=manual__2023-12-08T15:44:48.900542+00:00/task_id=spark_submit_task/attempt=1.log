@@ -1,0 +1,29 @@
+[2023-12-08T15:44:50.702+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spark_airflow_dag.spark_submit_task manual__2023-12-08T15:44:48.900542+00:00 [queued]>
+[2023-12-08T15:44:50.707+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spark_airflow_dag.spark_submit_task manual__2023-12-08T15:44:48.900542+00:00 [queued]>
+[2023-12-08T15:44:50.708+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2023-12-08T15:44:50.719+0000] {taskinstance.py:1380} INFO - Executing <Task(SparkSubmitOperator): spark_submit_task> on 2023-12-08 15:44:48.900542+00:00
+[2023-12-08T15:44:50.733+0000] {standard_task_runner.py:57} INFO - Started process 190 to run task
+[2023-12-08T15:44:50.739+0000] {standard_task_runner.py:84} INFO - Running: ['airflow', 'tasks', 'run', 'spark_airflow_dag', 'spark_submit_task', 'manual__2023-12-08T15:44:48.900542+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/spark-dag-example.py', '--cfg-path', '/tmp/tmphnhvgt1n']
+[2023-12-08T15:44:50.755+0000] {standard_task_runner.py:85} INFO - Job 2: Subtask spark_submit_task
+[2023-12-08T15:44:50.820+0000] {logging_mixin.py:151} WARNING - /home/airflow/.local/lib/python3.9/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2023-12-08T15:44:50.925+0000] {task_command.py:415} INFO - Running <TaskInstance: spark_airflow_dag.spark_submit_task manual__2023-12-08T15:44:48.900542+00:00 [running]> on host dataeng-airflow-scheduler
+[2023-12-08T15:44:51.034+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='dibimbing' AIRFLOW_CTX_DAG_ID='spark_airflow_dag' AIRFLOW_CTX_TASK_ID='spark_submit_task' AIRFLOW_CTX_EXECUTION_DATE='2023-12-08T15:44:48.900542+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-12-08T15:44:48.900542+00:00'
+[2023-12-08T15:44:51.046+0000] {base.py:73} INFO - Using connection ID 'spark_tgs' for task execution.
+[2023-12-08T15:44:51.047+0000] {spark_submit.py:351} INFO - Spark-Submit cmd: spark-submit --master spark://dataeng-spark-master:7077 --name arrow-spark /spark-scripts/spark-example.py
+[2023-12-08T15:44:53.661+0000] {spark_submit.py:521} INFO - File "/spark-scripts/spark-example.py", line 12
+[2023-12-08T15:44:53.664+0000] {spark_submit.py:521} INFO - sparkcontext.setLogLevel("WARN")
+[2023-12-08T15:44:53.664+0000] {spark_submit.py:521} INFO - ^
+[2023-12-08T15:44:53.664+0000] {spark_submit.py:521} INFO - SyntaxError: invalid syntax
+[2023-12-08T15:44:53.676+0000] {spark_submit.py:521} INFO - 23/12/08 15:44:53 INFO ShutdownHookManager: Shutdown hook called
+[2023-12-08T15:44:53.677+0000] {spark_submit.py:521} INFO - 23/12/08 15:44:53 INFO ShutdownHookManager: Deleting directory /tmp/spark-8debc000-4e34-49e6-8d72-3746a8768178
+[2023-12-08T15:44:53.729+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 160, in execute
+    self._hook.submit(self._application)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 452, in submit
+    raise AirflowException(
+airflow.exceptions.AirflowException: Cannot execute: spark-submit --master spark://dataeng-spark-master:7077 --name arrow-spark /spark-scripts/spark-example.py. Error code is: 1.
+[2023-12-08T15:44:53.747+0000] {taskinstance.py:1398} INFO - Marking task as FAILED. dag_id=spark_airflow_dag, task_id=spark_submit_task, execution_date=20231208T154448, start_date=20231208T154450, end_date=20231208T154453
+[2023-12-08T15:44:53.767+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 2 for task spark_submit_task (Cannot execute: spark-submit --master spark://dataeng-spark-master:7077 --name arrow-spark /spark-scripts/spark-example.py. Error code is: 1.; 190)
+[2023-12-08T15:44:53.804+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2023-12-08T15:44:53.845+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
